@@ -17,12 +17,23 @@ class Time:
     # Provide a developer-friendly string representation of the object.
     # input: Time for which a string representation is desired. 
     # output: string representation
+    def __str__(self) -> str:
+        return f"{self.hour}:{self.minute}:{self.second}"
+
+
 
 
     # Compare the Time object with another value to determine equality.
     # input: Time against which to compare
     # input: Another value to compare to the Time
     # output: boolean indicating equality
+    def __eq__(self, other: Any) -> bool:
+        return (other is self or
+                type(other) == Time and
+                self.hour == other.hour and
+                self.minute == other.minute and
+                self.second == other.second)
+
 
 
 
@@ -53,3 +64,7 @@ class Point:
                 type(other) == Point and
                 math.isclose(self.x, other.x) and
                 math.isclose(self.y, other.y))
+
+
+    def distance_from_origin(self) -> float:
+        return math.sqrt(self.x ** 2 + self.y ** 2)
